@@ -1,0 +1,65 @@
+<!--
+SIT210 4.2HD
+Code with thanks to cmac-duke.github.io!
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SIT210 Task 4.2HD</title>
+        <!--jQuery library for the post function we'll use-->
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <h1>Website to switch rural traffic lights</h1>
+        <!--centre the buttons-->
+        <style>
+            .wrapper {
+                text-align: center;
+            }
+
+            .button {
+                position: absolute;
+                top: 50%;
+            }
+        </style>
+
+        <!--the three buttons to turn on/off the lights-->
+        <div class="wrapper">
+            <button id="redButton" onclick="toggleRedLED()">Red</button>
+            <button id="greenButton" onclick="toggleGreenLED()">Green</button>
+            <button id="blueButton" onclick="toggleBlueLED()">Blue</button>
+        </div>
+        <!--the javascript to send the post-->
+        <script type="text/javascript">
+            //variables for my device
+            var deviceID = "your device id here";
+            var accessToken = "your access token here";
+            var argonFunction = "lights";
+
+            // function to toggle the red led
+            function toggleRedLED() {
+                // build the request url
+                var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + argonFunction + "/";
+                // build and send the post request
+                $.post(requestURL, {params: "red", access_token: accessToken});
+            }
+
+            // same format as toggleRedLED
+            function toggleGreenLED() {
+                var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + argonFunction + "/";
+                $.post(requestURL, {params: "green", access_token: accessToken});
+            }
+
+            // same format as toggleRedLED
+            function toggleBlueLED() {
+                var requestURL = "https://api.particle.io/v1/devices/" + deviceID + "/" + argonFunction + "/";
+                $.post(requestURL, {params: "blue", access_token: accessToken});
+            }
+        </script>
+    </body>
+</html>
